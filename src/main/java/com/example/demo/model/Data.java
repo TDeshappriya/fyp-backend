@@ -1,0 +1,125 @@
+package com.example.demo.model;
+
+
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Entity
+@Table(name = "data")
+//@NamedStoredProcedureQueries({
+//	   @NamedStoredProcedureQuery(
+//	   name = "p_insertData", 
+//	   procedureName = "p_insertData", 
+//	   resultClasses = {  },    
+//	   parameters = { 
+//	      @StoredProcedureParameter( name = " id",  type = String.class,  mode = ParameterMode.IN),
+//	      @StoredProcedureParameter( name = "iri_value",  type = String.class,  mode = ParameterMode.IN)
+////	      @StoredProcedureParameter( name = "out_code",  type = Integer.class,  mode = ParameterMode.OUT), 
+////	      @StoredProcedureParameter( name = "out_message",  type = String.class,  mode = ParameterMode.OUT)
+//
+//	      query.setParameter(1, username);
+//	        query.setParameter(2, password);
+//
+//	        //Execute query
+//	        query.execute();
+//	     }),
+//
+//	 })
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@ToString
+
+@NamedStoredProcedureQueries({@NamedStoredProcedureQuery(name = "getData",procedureName="test"),
+	@NamedStoredProcedureQuery (name = "insertData", procedureName = "p_insertData", parameters = {
+//			@StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "accelerometer", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "roadName", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "userId", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "iriValue", type = double.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "distanceInMeters", type = double.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "vehicleType", type = String.class),
+//			@StoredProcedureParameter(mode = ParameterMode.IN, name = "roadId", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "result", type = String.class)
+	})})
+
+
+public class Data {
+	
+	@Id
+    @GeneratedValue
+    private int id;
+	private String accelerometer;
+	private String roadName;
+	private String userId;
+	private double iriValue;
+	private double distanceInMeters;
+	private String vehicleType;
+	private String roadId;
+	
+	
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getAccelerometer() {
+		return accelerometer;
+	}
+	public void setAccelerometer(String accelerometer) {
+		this.accelerometer = accelerometer;
+	}
+	public String getRoadName() {
+		return roadName;
+	}
+	public void setRoadName(String roadName) {
+		this.roadName = roadName;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public double getIriValue() {
+		return iriValue;
+	}
+	public void setIriValue(double iriValue) {
+		this.iriValue = iriValue;
+	}
+	public double getDistanceInMeters() {
+		return distanceInMeters;
+	}
+	public void setDistanceInMeters(double distanceInMeters) {
+		this.distanceInMeters = distanceInMeters;
+	}
+	public String getVehicleType() {
+		return vehicleType;
+	}
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+	public String getRoadId() {
+		return roadId;
+	}
+	public void setRoadId(String roadId) {
+		this.roadId = roadId;
+	}
+	
+
+	
+}
