@@ -40,7 +40,20 @@ import lombok.ToString;
 //@AllArgsConstructor
 //@ToString
 
-@NamedStoredProcedureQueries({@NamedStoredProcedureQuery(name = "getData",procedureName="test"),
+
+@NamedStoredProcedureQueries({
+	@NamedStoredProcedureQuery(name = "updateVtype",procedureName= "p_updateVtype", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "vehicleType", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = int.class)
+	}),
+	@NamedStoredProcedureQuery(name = "getDataToListView",procedureName= "p_getDataToListView", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "id", type = int.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "userid", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "roadName", type = String.class)
+	}),
+	@NamedStoredProcedureQuery(name = "getDataToMap",procedureName= "p_getDataToLoadMap", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "accelerometer", type = String.class)
+	}),
 	@NamedStoredProcedureQuery (name = "insertData", procedureName = "p_insertData", parameters = {
 //			@StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "accelerometer", type = String.class),
@@ -50,7 +63,9 @@ import lombok.ToString;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "distanceInMeters", type = double.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "vehicleType", type = String.class),
 //			@StoredProcedureParameter(mode = ParameterMode.IN, name = "roadId", type = String.class),
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "result", type = String.class)
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "result", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "id", type = int.class),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "roadId", type = int.class)
 	})})
 
 

@@ -29,6 +29,32 @@ public class storedProcedure {
 	    }
 	    
 	    @SuppressWarnings("unchecked")
+		public void updateVtype(String response, int id){
+	    	 StoredProcedureQuery query = em.createNamedStoredProcedureQuery("updateVtype");
+	    	 query.setParameter("id", id);
+	    	 query.setParameter("vehicleType", response);
+	    	 
+	    	 query.execute();
+	    	 
+	    }
+	    
+	    @SuppressWarnings("unchecked")
+		public List<Data> getDataToListView(){
+	    	 StoredProcedureQuery query = em.createNamedStoredProcedureQuery("getDataToListView");    	 
+	    	 query.execute();
+	    	 
+	    	 return query.getResultList();
+	    }
+	    
+	    @SuppressWarnings("unchecked")
+		public String getDataToMap(){
+	    	 StoredProcedureQuery query = em.createNamedStoredProcedureQuery("getDataToMap");
+	    	 query.execute();
+	    	 
+	    	 return (String) query.getOutputParameterValue("accelerometer");
+	    }
+	    
+	    @SuppressWarnings("unchecked")
 		public String getDataFiltered(List<Data> data){
 	    	StoredProcedureQuery query = em.createNamedStoredProcedureQuery("insertData");
 //	    	query.setParameter("id","100");
@@ -39,8 +65,7 @@ public class storedProcedure {
 	    	query.setParameter("distanceInMeters",data.get(0).getDistanceInMeters());
 	    	query.setParameter("vehicleType",data.get(0).getVehicleType());
 //	    	query.setParameter("roadId",data.get(0).getRoadId());
-	    	
-	    	
+	    		    	
 	    	query.execute();
 	    	return (String) query.getOutputParameterValue("result");
 	    }

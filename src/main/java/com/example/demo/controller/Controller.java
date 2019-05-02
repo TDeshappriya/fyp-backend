@@ -54,6 +54,16 @@ public class Controller {
 		return sp.getDataDB();
 	}
 	
+	@GetMapping("/getDataToListView")
+	public List<Data> getDataToListView(){
+		return sp.getDataToListView();
+	}
+	
+	@GetMapping("/getDataToMap")
+	public String getDataToMap(){
+		return sp.getDataToMap();
+	}
+	
 	@PostMapping("/insertData")
 	public void insertData(@RequestBody List<Data> data){
 		String test = sp.getDataFiltered(data);
