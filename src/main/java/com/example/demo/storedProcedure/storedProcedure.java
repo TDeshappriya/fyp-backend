@@ -19,6 +19,8 @@ import com.example.demo.model.Data;
 @Repository
 public class storedProcedure {
 	
+		public int id;
+		public int roadId;
 
 	    @Autowired
 	    private EntityManager em;
@@ -67,6 +69,9 @@ public class storedProcedure {
 //	    	query.setParameter("roadId",data.get(0).getRoadId());
 	    		    	
 	    	query.execute();
+	    	
+	    	id = (int) query.getOutputParameterValue("id");
+	    	roadId = (int) query.getOutputParameterValue("id");
 	    	return (String) query.getOutputParameterValue("result");
 	    }
 	   

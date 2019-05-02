@@ -14,15 +14,20 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.storedProcedure.storedProcedure;
 
 @Service
 public class HttpDataHandling {
+	
+	@Autowired
+	storedProcedure sp;
 
 	
-	public void sendDataToMlModel(String roadid, double irivalue) 
+	public void sendDataToMlModel(int roadid, double irivalue, int id) 
 			  throws ClientProtocolException, IOException, JSONException {
 			    HttpClient client = HttpClients.createDefault();
 			    HttpPost httpPost = new HttpPost("http://localhost:9000/predict/");
@@ -40,6 +45,8 @@ public class HttpDataHandling {
 //			    ResponseEntity<String> dsd = client.execute(httpPost);
 			    System.out.println(httpPost);
 			    System.out.println(response);
+			    
+			    sp.updateVtype(response, id);
 //			    client.close();
 			}
 }

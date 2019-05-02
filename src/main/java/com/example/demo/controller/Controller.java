@@ -59,7 +59,7 @@ public class Controller {
 		return sp.getDataToListView();
 	}
 	
-	@GetMapping("/getDataToMap")
+	@PostMapping("/getDataToMap")
 	public String getDataToMap(){
 		return sp.getDataToMap();
 	}
@@ -72,7 +72,7 @@ public class Controller {
 		
 		if (test.equals("1") ){
 		try {
-			hdh.sendDataToMlModel(data.get(0).getRoadId(), data.get(0).getIriValue());
+			hdh.sendDataToMlModel(sp.roadId, data.get(0).getIriValue(), sp.id);
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
