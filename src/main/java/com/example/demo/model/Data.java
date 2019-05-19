@@ -57,11 +57,12 @@ import lombok.ToString;
 	@NamedStoredProcedureQuery (name = "insertData", procedureName = "p_insertData", parameters = {
 //			@StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "accelerometer", type = String.class),
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "latlng", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "roadName", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "userId", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "iriValue", type = double.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "distanceInMeters", type = double.class),
-			@StoredProcedureParameter(mode = ParameterMode.IN, name = "vehicleType", type = String.class),
+//			@StoredProcedureParameter(mode = ParameterMode.IN, name = "vehicleType", type = String.class),
 //			@StoredProcedureParameter(mode = ParameterMode.IN, name = "roadId", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "result", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "id", type = int.class),
@@ -75,6 +76,7 @@ public class Data {
     @GeneratedValue
     private int id;
 	private String accelerometer;
+	private String latlng;
 	private String roadName;
 	private String userId;
 	private double iriValue;
@@ -97,6 +99,12 @@ public class Data {
 	}
 	public void setAccelerometer(String accelerometer) {
 		this.accelerometer = accelerometer;
+	}
+	public String getLatlng() {
+		return latlng;
+	}
+	public void setLatlng(String latlng) {
+		this.latlng = latlng;
 	}
 	public String getRoadName() {
 		return roadName;

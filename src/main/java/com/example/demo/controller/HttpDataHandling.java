@@ -43,8 +43,10 @@ public class HttpDataHandling {
 			   
 			    String response = jarray.getString(0);
 //			    ResponseEntity<String> dsd = client.execute(httpPost);
-			    System.out.println(httpPost);
+//			    System.out.println(httpPost);
 			    System.out.println(response);
+
+			    System.out.println(id);
 			    
 			    sp.updateVtype(response, id);
 //			    client.close();

@@ -59,7 +59,7 @@ public class Controller {
 		return sp.getDataToListView();
 	}
 	
-	@PostMapping("/getDataToMap")
+	@GetMapping("/getDataToMap")
 	public String getDataToMap(){
 		return sp.getDataToMap();
 	}
@@ -68,7 +68,7 @@ public class Controller {
 	public void insertData(@RequestBody List<Data> data){
 		String test = sp.getDataFiltered(data);
 		
-		System.out.println(test);
+//		System.out.println(test);
 		
 		if (test.equals("1") ){
 		try {
