@@ -51,4 +51,14 @@ public class HttpDataHandling {
 			    sp.updateVtype(response, id);
 //			    client.close();
 			}
+	
+	public void trainMlModel() 
+			  throws ClientProtocolException, IOException, JSONException {
+			    HttpClient client = HttpClients.createDefault();
+			    HttpPost httpPost = new HttpPost("http://localhost:9000/train/");
+			
+			    ResponseHandler<String> handler = new BasicResponseHandler();
+			    client.execute(httpPost, handler); 
+
+			}
 }

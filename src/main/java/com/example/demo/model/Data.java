@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,6 +12,8 @@ import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -46,11 +50,17 @@ import lombok.ToString;
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "vehicleType", type = String.class),
 			@StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = int.class)
 	}),
+//	@NamedStoredProcedureQuery(name = "getDataToListView",procedureName= "p_getDataToListView", parameters = {
+//			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "id", type = int.class),
+//			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "userid", type = String.class),
+//			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "roadName", type = String.class)
+//	}),
 	@NamedStoredProcedureQuery(name = "getDataToListView",procedureName= "p_getDataToListView", parameters = {
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "id", type = int.class),
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "userid", type = String.class),
-			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "roadName", type = String.class)
-	}),
+			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "data", type = String.class)
+	}
+	),
+	@NamedStoredProcedureQuery(name = "update_roads",procedureName= "p_update_roads"
+			),
 	@NamedStoredProcedureQuery(name = "getDataToMap",procedureName= "p_getDataToLoadMap", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "accelerometer", type = String.class)
 	}),

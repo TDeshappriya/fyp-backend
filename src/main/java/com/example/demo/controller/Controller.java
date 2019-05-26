@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
 import org.codehaus.jettison.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,12 +57,12 @@ public class Controller {
 	}
 	
 	@GetMapping("/getDataToListView")
-	public List<Data> getDataToListView(){
+	public ArrayList<Data> getDataToListView(){
 		return sp.getDataToListView();
 	}
 	
 	@GetMapping("/getDataToMap")
-	public String getDataToMap(){
+	public ArrayList<Data> getDataToMap(){
 		return sp.getDataToMap();
 	}
 	
@@ -87,6 +89,27 @@ public class Controller {
 //		 return sp.getDataFiltered(data);
 	}
 	
+	@Scheduled(cron="0 30 2 * * ?")
+    public void trainModel(){
+        try {
+			hdh.trainMlModel();
+			System.out.println("trained");
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+	
+	@Scheduled(cron="0 30 2 * * ?")
+    public void update_roads(){
+		sp.update_roads();
+	}
 	
 	
 	
