@@ -9,9 +9,12 @@ import org.codehaus.jettison.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Data;
@@ -66,6 +69,27 @@ public class Controller {
 		return sp.getDataToMap();
 	}
 	
+//	@PostMapping("/getDataToMap")
+//	public String updateVtype(@RequestBody List<List> list){
+//		String response = data.get(0).
+//		return sp.updateVtype(response, id);(data);
+//	}
+	
+//	@PostMapping("/deleteRecord")
+	@RequestMapping("/deleteRecord/{id}")
+//	@RequestMapping(value = "/deleteRecord/{id}", method = RequestMethod.POST, 
+//			  produces = "application/json")
+	@ResponseBody
+	public void deleteRecord(@PathVariable int id){
+		sp.deleteRecord(id);
+	}
+	
+	@RequestMapping("/updateVtype/{id}/{vType}")
+	@ResponseBody
+	public void updateVtype(@PathVariable int id, @PathVariable String vType){
+		sp.updateVtype(id, vType);
+	}
+	
 	@PostMapping("/insertData")
 	public void insertData(@RequestBody List<Data> data){
 		String test = sp.getDataFiltered(data);
@@ -88,6 +112,8 @@ public class Controller {
 //		 
 //		 return sp.getDataFiltered(data);
 	}
+	
+	
 	
 	@Scheduled(cron="0 30 2 * * ?")
     public void trainModel(){

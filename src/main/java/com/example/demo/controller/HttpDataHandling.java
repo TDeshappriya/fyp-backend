@@ -48,7 +48,7 @@ public class HttpDataHandling {
 
 			    System.out.println(id);
 			    
-			    sp.updateVtype(response, id);
+			    sp.updateVtype(id, response);
 //			    client.close();
 			}
 	

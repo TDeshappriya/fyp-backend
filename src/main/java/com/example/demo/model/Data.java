@@ -57,8 +57,10 @@ import lombok.ToString;
 //	}),
 	@NamedStoredProcedureQuery(name = "getDataToListView",procedureName= "p_getDataToListView", parameters = {
 			@StoredProcedureParameter(mode = ParameterMode.OUT, name = "data", type = String.class)
-	}
-	),
+	}),
+	@NamedStoredProcedureQuery(name = "deleteRecord",procedureName= "p_deleteRecord", parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = int.class)
+	}),
 	@NamedStoredProcedureQuery(name = "update_roads",procedureName= "p_update_roads"
 			),
 	@NamedStoredProcedureQuery(name = "getDataToMap",procedureName= "p_getDataToLoadMap", parameters = {

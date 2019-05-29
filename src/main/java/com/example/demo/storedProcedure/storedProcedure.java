@@ -32,10 +32,19 @@ public class storedProcedure {
 	    }
 	    
 	    @SuppressWarnings("unchecked")
-		public void updateVtype(String response, int id){
+		public void updateVtype(int id, String response){
 	    	 StoredProcedureQuery query = em.createNamedStoredProcedureQuery("updateVtype");
 	    	 query.setParameter("id", id);
 	    	 query.setParameter("vehicleType", response);
+	    	 
+	    	 query.execute();
+	    	 
+	    }
+	    
+	    @SuppressWarnings("unchecked")
+		public void deleteRecord(int id){
+	    	 StoredProcedureQuery query = em.createNamedStoredProcedureQuery("deleteRecord");
+	    	 query.setParameter("id", id);
 	    	 
 	    	 query.execute();
 	    	 
